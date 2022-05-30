@@ -10,7 +10,7 @@ import org.junit.runner.RunWith;
                 "rerun:target/cucumber-reports/rerun.txt" },
         monochrome = true,
         glue = {
-                "com.client.stepdefinitions"
+                "com.toptal.stepdefinitions"
         }
 )
 public class TestRunner {}

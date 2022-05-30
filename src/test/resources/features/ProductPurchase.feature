@@ -8,7 +8,15 @@ Feature: Jira-Feature# purchasing the product end to end flow
   Scenario Outline: search the product with search criteria and adding it to the cart
 
     Given user navigated to the <maintab> menu option
-
+    When user search for the product with following search criteria
+      | Categories |
+      | Dresses    |
+    And user search for the product with following search criteria
+      | Size | Compositions |
+      | M    | Polyester    |
+    And user adds the number of product to the cart on hover
+      | 1 |
+    Then user views the cart and does the checkout
 
     Examples:
       | maintab |
