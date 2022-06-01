@@ -1,4 +1,4 @@
-package com.toptal.stepdefinitions.ui;
+package com.toptal.stepdefinitions;
 
 
 import com.toptal.library.DriverClass;
