@@ -7,11 +7,11 @@ import java.io.IOException;
 
 interface Services {
 
-    void setBody(String body);
+    void setBody(Object body);
 
-    void setHeaders() ;
+    void setHeaders(JsonObject jsonObject) ;
 
-    void setParameter(JsonObject jsonObject) ;
+    void setParameter(JsonObject jsonObject,String token) ;
 
     void setRequestMethod(String method);
 
@@ -22,4 +22,6 @@ interface Services {
     JsonPath getServiceResponse() ;
 
     void runServiceCall(String apiName) throws IOException;
+
+    void setResponseCode(String responseCode);
 }

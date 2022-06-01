@@ -20,9 +20,17 @@ public class Hooks {
         LandingPage lPage = new LandingPage(DriverManager.getDriver());
         lPage.loadUrl();
         lPage.signIn();
-        new BaseTest().initmap();
     }
 
+    @Before("@datamap")
+    public static void setUp(){
+        if(BaseTest.apiMap==null){
+            new BaseTest().initAPIMap();
+        }
+        if(BaseTest.commonMap==null){
+            new BaseTest().initUiMap();
+        }
+    }
     @After("@ui")
     public void afterScenario(){
         DriverManager.getDriver().quit();

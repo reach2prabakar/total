@@ -2,12 +2,10 @@ package com.toptal.processor;
 
 import org.json.simple.JSONObject;
 
-import java.util.Map;
 
 public class DataHandlerThread {
 
     private JSONObject jsonObject;
-    static Map<String, Object> dynamicMap;
 
     private DataHandlerThread(){
     }

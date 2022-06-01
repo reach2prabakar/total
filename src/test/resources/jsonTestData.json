@@ -1,15 +1,123 @@
 {
   "uri": "https://api.mapbox.com",
+  "access_token": "sk.eyJ1IjoicmVhY2gycHJhYmFrYXIiLCJhIjoiY2wzdWh5bGNwMDRxdDNqbzJ1ZGZ5NWJzNSJ9.jVmYxKeBpNd_unTnto_ErA",
+
+  "createDataset": {
+    "endpoint": "/datasets/v1/reach2prabakar",
+    "method": "post",
+    "header": {"Content-Type": "application/json"},
+    "requestBody": {
+      "name": "foo",
+      "description": "bar"
+    },
+    "parameters": {
+      "access_token": "sk.eyJ1IjoicmVhY2gycHJhYmFrYXIiLCJhIjoiY2wzdWh5bGNwMDRxdDNqbzJ1ZGZ5NWJzNSJ9.jVmYxKeBpNd_unTnto_ErA"
+    },
+    "responsecode": 200,
+    "responseToCapture": {
+      "id": "datasetid"
+    }
+  },
+
+  "getDataset": {
+    "endpoint": "/datasets/v1/reach2prabakar/${datasetid}",
+    "method": "get",
+    "header": {},
+    "requestBody": {},
+    "parameters": { },
+    "responsecode": 422,
+    "responseToCapture": { },
+    "tovalidate": {
+      "message": "No dataset"
+    }
+  },
+
+  "updateDataset": {
+    "endpoint": "/datasets/v1/reach2prabakar/${datasetid}",
+    "method": "patch",
+    "header": {"Content-Type": "application/json"},
+    "requestBody": {
+      "name": "queenstown",
+      "description": "one of the heaven"
+    },
+    "responsecode": 200,
+    "parameters": { },
+    "responseToCapture": { }
+  },
+
+  "deleteDataset": {
+    "endpoint": "/datasets/v1/reach2prabakar/${datasetid}",
+    "method": "Delete",
+    "header": {},
+    "requestBody": {},
+    "responsecode": 204,
+    "parameters": { },
+    "responseToCapture": { }
+  },
+
+  "createDatasetUnauth": {
+    "endpoint": "/datasets/v1/reach2prabakar",
+    "method": "post",
+    "header": {"Content-Type": "application/json"},
+    "requestBody": {
+      "name": "foo",
+      "description": "bar"
+    },
+    "parameters": {
+      "access_token": "sk.eyJ1IjoicmVhY2gycHJhYmFrYXIiLCJhIjoiY2wzdWh5"
+    },
+    "responseToCapture": { },
+    "responsecode": 401
+  },
+
   "geocoding": {
-    "endpoint":"/v5/mapbox.places/chester.json",
-    "method" : "get",
-    "auth" : "noAuth",
-    "header": "",
-    "requestBody": "",
-    "parameters" : {
-      "limit" : "2",
+    "endpoint": "/geocoding/v5/mapbox.places/chester.json",
+    "method": "get",
+    "header": {},
+    "requestBody": {},
+    "parameters": {
+      "limit": 1,
       "proximity": "-74.70850,40.78375",
       "access_token": "sk.eyJ1IjoicmVhY2gycHJhYmFrYXIiLCJhIjoiY2wzdWh5bGNwMDRxdDNqbzJ1ZGZ5NWJzNSJ9.jVmYxKeBpNd_unTnto_ErA"
+    },
+    "responsecode": 200,
+    "responseToCapture": { },
+    "tovalidate": {
+      "features[0].text": "Chester"
+    }
+  },
+
+  "geocodingInvalid": {
+    "endpoint": "/geocoding/v5/mapbox.places/zerchester34.json",
+    "method": "get",
+    "header": {},
+    "requestBody": {},
+    "parameters": {
+      "limit": 1,
+      "proximity": "-74.70850,40.78375",
+      "access_token": "sk.eyJ1IjoicmVhY2gycHJhYmFrYXIiLCJhIjoiY2wzdWh5bGNwMDRxdDNqbzJ1ZGZ5NWJzNSJ9.jVmYxKeBpNd_unTnto_ErA"
+    },
+    "responsecode": 200,
+    "responseToCapture": { },
+    "tovalidate": {
+      "features[0]": "null"
+    }
+  },
+
+  "geocodingInvalidLocation": {
+    "endpoint": "/geocoding/v5/mapbox.places/chester.json",
+    "method": "get",
+    "header": {},
+    "requestBody": {},
+    "parameters": {
+      "limit": 1,
+      "proximity": "-74.70850",
+      "access_token": "sk.eyJ1IjoicmVhY2gycHJhYmFrYXIiLCJhIjoiY2wzdWh5bGNwMDRxdDNqbzJ1ZGZ5NWJzNSJ9.jVmYxKeBpNd_unTnto_ErA"
+    },
+    "responsecode": 422,
+    "responseToCapture": { },
+    "tovalidate": {
+      "message": "Proximity must be an array in the form [lon, lat]"
     }
   }
 }

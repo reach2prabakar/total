@@ -12,14 +12,17 @@ public class BaseTest {
     public PropertyReader propertyReader;
 
     public static LinkedHashMap<String,String> commonMap;
+    public static LinkedHashMap<String,String> apiMap;
 
     public BaseTest(){
         driver = DriverManager.getDriver();
         propertyReader = new PropertyReader();
     }
 
-    public void initmap(){
+    public void initUiMap(){
         commonMap = new LinkedHashMap<>();
     }
-
+    public void initAPIMap(){
+        apiMap = new LinkedHashMap<>();
+    }
 }
