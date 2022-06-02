@@ -1,4 +1,4 @@
-@ui @buyproduct @regression
+@ui @buyproduct @regression @datamap
 Feature: Jira-Feature# purchasing the product end to end flow
   As a user
   I will search for the product with 3 criteria and add that to my cart
