@@ -63,17 +63,17 @@ public class CheckOutPage extends HomePage {
 
     public void validateProductDesc(LinkedHashMap<String, String> cMapData) {
 
-        int i=0;
+        int i=1;
         for (WebElement webElement : cartDescriptionTxt) {
             String cartDesc = webElement.getText();
-            String addedProduct = cMapData.get("productText" + i);
+            String addedProduct = cMapData.get("productText"+i);
             logger.debug("Asserting -> : cartDescription " + cartDesc + "added items to cart :"+addedProduct);
             assertThat("the added product is different from the product in the cart", addedProduct.equals(cartDesc));
         }
         for(WebElement webElement : cartSizeTxt){
             String sizeText = webElement.getText();
             String size = sizeText.split(",")[0].split(":")[1];
-            String addedSize = cMapData.get("Size" + i);
+            String addedSize = cMapData.get("Size"+i);
             logger.debug("Asserting -> : cartsize " + size + "added items to cart :"+addedSize);
             assertThat("the added size is different from the product in the cart", addedSize.equals(size));
         }

@@ -34,12 +34,14 @@ public class ProductPurchaseSteps extends BaseTest {
 
     @When("^user search for the product with following search criteria")
     public void searchProductWithCriteria(DataTable data) {
+        int i=1;
         List<Map<String, String>> listData = data.asMaps();
         for (Map<String, String> maplist : listData) {
             for (String mapData : maplist.keySet()) {
                 wPage.clickOnFilter(mapData, maplist.get(mapData));
-                commonMap.put(mapData, maplist.get(mapData));
+                commonMap.put(mapData+i, maplist.get(mapData));
             }
+            i++;
         }
         logger.debug("the common map key updated :"+commonMap.keySet());
     }
