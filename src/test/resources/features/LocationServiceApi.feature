@@ -1,4 +1,4 @@
-@api @location @datamap
+@api @location @datamap @regression
 Feature: JiraId-feature location services via mapbox.com
   As a test user
   I want to send the location information to the map service

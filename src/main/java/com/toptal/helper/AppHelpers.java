@@ -1,21 +1,16 @@
 package com.toptal.helper;
 
-
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.*;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.time.Duration;
-import java.util.List;
-
-import static org.hamcrest.MatcherAssert.assertThat;
-import static org.hamcrest.Matchers.equalTo;
 
 public class AppHelpers {
 
-    private static final Logger logger = LogManager.getLogger(AppHelpers.class);
+    Logger logger = LoggerFactory.getLogger(AppHelpers.class);
     private final WebDriver driver;
 
     public AppHelpers(WebDriver driver){
@@ -67,12 +62,13 @@ public class AppHelpers {
         return webElement.getAttribute(attribute);
     }
     public void waitForElement(WebElement element){
+        logger.debug("waiting for element "+ element );
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
         wait.until(ExpectedConditions.visibilityOf(element));
     }
 
     public void enterTextOnElement(WebElement webElement,String text){
-        logger.info("Text entered on "+webElement +" is"+text);
+        logger.debug("Text entered on "+webElement +" is"+text);
         waitForElement(webElement);
         webElement.clear();
         webElement.click();

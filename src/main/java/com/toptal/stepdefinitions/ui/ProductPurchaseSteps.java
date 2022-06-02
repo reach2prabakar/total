@@ -9,15 +9,15 @@ import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.util.List;
 import java.util.Map;
 
 public class ProductPurchaseSteps extends BaseTest {
 
-    private static final Logger logger = LogManager.getLogger(ProductPurchaseSteps.class);
+    private static final Logger logger = LoggerFactory.getLogger(ProductPurchaseSteps.class);
     HomePage hPage = new HomePage(driver);
     WomenPage wPage;
 
@@ -41,6 +41,7 @@ public class ProductPurchaseSteps extends BaseTest {
                 commonMap.put(mapData, maplist.get(mapData));
             }
         }
+        logger.debug("the common map key updated :"+commonMap.keySet());
     }
     @And("^user adds the number of product to the cart on hover")
     public void addProductToCartOnHover(DataTable data){

@@ -5,9 +5,9 @@ import com.google.gson.JsonParser;
 import io.restassured.path.json.JsonPath;
 import io.restassured.response.Response;
 import org.apache.commons.text.StringSubstitutor;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 import org.json.simple.JSONObject;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -20,7 +20,7 @@ import static org.hamcrest.Matchers.equalTo;
 
 public class ApiService implements Services {
 
-    private static final Logger logger = LogManager.getLogger(ApiService.class);
+    Logger logger = LoggerFactory.getLogger(ApiService.class);
     private String serviceUri;
     private String serviceEndpoint;
     private Object requestBody;
@@ -181,7 +181,7 @@ public class ApiService implements Services {
             logger.error(e + "The jsonTestData.json is missing /mismatch one of the key =>'endpoint,baseURI,method,requestBody,header' please update");
             throw new RuntimeException(e + "The jsonTestData.json is missing /mismatch one of the key =>'endpoint,baseURI,method,requestBody,header' please update");
         }
-
+        logger.debug("request generated to execute is :"+response);
         serviceResponse = getRequestMethod().equalsIgnoreCase("get") ?
                 given().baseUri(getServiceUri()).basePath(getServiceEndPoint()).headers(getHeaders()).queryParams(getParam()).get() :
                 getRequestMethod().equalsIgnoreCase("post") ?
@@ -189,14 +189,15 @@ public class ApiService implements Services {
                         getRequestMethod().equalsIgnoreCase("patch") ?
                                 given().baseUri(getServiceUri()).basePath(getServiceEndPoint()).headers(getHeaders()).queryParams(getParam()).body(getBody()).patch():
                                 given().baseUri(getServiceUri()).basePath(getServiceEndPoint()).headers(getHeaders()).queryParams(getParam()).body(getBody()).delete();
-                                logger.info("request:" + response + "-----> response ----> " + serviceResponse.jsonPath());
+                                logger.debug("request:" + response + "-----> response ----> " + serviceResponse.jsonPath());
         JsonPath jpath = serviceResponse.getBody().jsonPath();
+        logger.debug("api name ---> "+apiName +" json response body -> :"+jpath);
         for (String key : getresponseToCapture().keySet()) {
             String resKeyValue = jpath.get(key);
             BaseTest.apiMap.put(getresponseToCapture().get(key), resKeyValue);
         }
         assertThat("Response status was not 200 for api " + apiName, serviceResponse.getStatusCode(), equalTo(Integer.valueOf(getResponseCode())));
-        logger.info("Response status was not 200 for api " + apiName, serviceResponse.getStatusCode(), equalTo(Integer.valueOf(getResponseCode())));
+        logger.debug("Response status was not 200 for api " + apiName, serviceResponse.getStatusCode(), equalTo(Integer.valueOf(getResponseCode())));
         if(validation){
             for (String key : responseToValidate.keySet()) {
                 String resKeyValue = jpath.get(key);
@@ -205,9 +206,9 @@ public class ApiService implements Services {
                    expectedResponse = null;
                }
                 assertThat("Response message is not matched for API ->" + apiName, resKeyValue, equalTo(expectedResponse));
-                logger.info("Response message is not matched for API ->" + apiName, resKeyValue, equalTo(expectedResponse));
+                logger.debug("Response message is not matched for API ->" + apiName, resKeyValue, equalTo(expectedResponse));
             }
         }
-        logger.info(apiName + "Api is passed");
+        logger.debug(apiName + "Api is passed");
     }
 }

@@ -1,4 +1,4 @@
-@ui @buyproduct
+@ui @buyproduct @regression
 Feature: Jira-Feature# purchasing the product end to end flow
   As a user
   I will search for the product with 3 criteria and add that to my cart
@@ -7,7 +7,7 @@ Feature: Jira-Feature# purchasing the product end to end flow
   @searchforaproduct
   Scenario Outline: search the product with search criteria and adding it to the cart
 
-    Given user navigated to the <maintab> menu option
+   Given user navigated to the <maintab> menu option
     When user search for the product with following search criteria
       | Categories |
       | Dresses    |
@@ -18,7 +18,7 @@ Feature: Jira-Feature# purchasing the product end to end flow
       | 1 |
     Then user views the cart and does the checkout
 
-    Examples:
+   Examples:
       | maintab |
       | WOMEN   |
 

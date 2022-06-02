@@ -1,8 +1,8 @@
 package com.toptal.library;
 
 import org.apache.commons.lang3.StringUtils;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -10,7 +10,7 @@ import java.util.Properties;
 
 
 public class PropertyReader {
-    private static final Logger logger = LogManager.getLogger(PropertyReader.class);
+    Logger logger = LoggerFactory.getLogger(PropertyReader.class);
     private final Properties prop = new Properties();
 
     public PropertyReader() {
@@ -18,6 +18,7 @@ public class PropertyReader {
         ClassLoader loader = Thread.currentThread().getContextClassLoader();
         InputStream resourceStream = loader.getResourceAsStream( propFileName+".properties");
         loadProperties(resourceStream);
+        logger.debug(propFileName+".properties - >Propertyfile is loaded correctly ");
     }
 
     private void loadProperties(InputStream stream) {

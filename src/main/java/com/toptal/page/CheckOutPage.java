@@ -1,12 +1,14 @@
 package com.toptal.page;
 
-import org.openqa.selenium.By;
+import com.toptal.library.PropertyReader;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindAll;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.time.Duration;
 import java.util.LinkedHashMap;
@@ -17,6 +19,7 @@ import static org.hamcrest.Matchers.equalTo;
 
 public class CheckOutPage extends HomePage {
 
+    Logger logger = LoggerFactory.getLogger(CheckOutPage.class);
     @FindBy(xpath = "//table[@id='cart_summary']")
     public WebElement cartTable;
 
@@ -59,21 +62,25 @@ public class CheckOutPage extends HomePage {
     }
 
     public void validateProductDesc(LinkedHashMap<String, String> cMapData) {
-        int i = 0;
+
+        int i=0;
         for (WebElement webElement : cartDescriptionTxt) {
             String cartDesc = webElement.getText();
             String addedProduct = cMapData.get("productText" + i);
+            logger.debug("Asserting -> : cartDescription " + cartDesc + "added items to cart :"+addedProduct);
             assertThat("the added product is different from the product in the cart", addedProduct.equals(cartDesc));
         }
         for(WebElement webElement : cartSizeTxt){
             String sizeText = webElement.getText();
             String size = sizeText.split(",")[0].split(":")[1];
             String addedSize = cMapData.get("Size" + i);
+            logger.debug("Asserting -> : cartsize " + size + "added items to cart :"+addedSize);
             assertThat("the added size is different from the product in the cart", addedSize.equals(size));
         }
         for (WebElement webElement : cartTotalTxt) {
             String cartTotal = webElement.getText();
             String addedProductTotal = cMapData.get("productPrice" + i);
+            logger.debug("Asserting -> : carttotal " + cartTotal + "added items to cart :"+addedProductTotal);
             assertThat("the added product total is different from the product total in the cart", addedProductTotal.equals(cartTotal));
         }
     }
