@@ -35,8 +35,16 @@ public class LandingPage extends HomePage {
 
     public void signIn(){
         clickOnElement(signInlnk);
-        enterTextOnElement(eMailinpt,"prabs.nz@gmail.com");
-        enterTextOnElement(passwordinpt,"Prabha@6560");
+        String userName = System.getProperty("userName") != null ? System.getProperty("userName") : "no userName";
+        if(userName.equals("no userName")){
+            throw new RuntimeException("userName must be provided in commandline to login to application");
+        }
+        String passWord = System.getProperty("passWord") != null ? System.getProperty("passWord") : "no passWord";
+        if(passWord.equals("no passWord")){
+            throw new RuntimeException("passWord must be provided in commandline to login to application");
+        }
+        enterTextOnElement(eMailinpt,userName);
+        enterTextOnElement(passwordinpt,passWord);
         clickOnElement(loginBtn);
     }
 
