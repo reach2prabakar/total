@@ -13,7 +13,7 @@ Feature: Jira-Feature# purchasing the product end to end flow
       | Dresses    |
     And user search for the product with following search criteria
       | Size | Compositions |
-      | M    | Polyester    |
+      | S    | Polyester    |
     And user adds the number of product to the cart on hover
       | 1 |
     Then user views the cart and does the checkout

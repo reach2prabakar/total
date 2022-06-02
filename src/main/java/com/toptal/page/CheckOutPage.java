@@ -65,23 +65,23 @@ public class CheckOutPage extends HomePage {
 
         int i=1;
         for (WebElement webElement : cartDescriptionTxt) {
-            String cartDesc = webElement.getText();
+            String cartDesc = webElement.getText().trim();
             String addedProduct = cMapData.get("productText"+i);
             logger.debug("Asserting -> : cartDescription " + cartDesc + "added items to cart :"+addedProduct);
-            assertThat("the added product is different from the product in the cart", addedProduct.equals(cartDesc));
+            assertThat("the added product :" + addedProduct+ " - is different from the product in the cart : "+cartDesc, addedProduct.equals(cartDesc));
         }
         for(WebElement webElement : cartSizeTxt){
             String sizeText = webElement.getText();
-            String size = sizeText.split(",")[0].split(":")[1];
+            String size = sizeText.split(",")[0].split(":")[1].trim();
             String addedSize = cMapData.get("Size"+i);
             logger.debug("Asserting -> : cartsize " + size + "added items to cart :"+addedSize);
-            assertThat("the added size is different from the product in the cart", addedSize.equals(size));
+            assertThat("the added size :"+addedSize  +" -- is different from the product in the cart :"+size, addedSize.equals(size));
         }
         for (WebElement webElement : cartTotalTxt) {
-            String cartTotal = webElement.getText();
+            String cartTotal = webElement.getText().trim();
             String addedProductTotal = cMapData.get("productPrice" + i);
             logger.debug("Asserting -> : carttotal " + cartTotal + "added items to cart :"+addedProductTotal);
-            assertThat("the added product total is different from the product total in the cart", addedProductTotal.equals(cartTotal));
+            assertThat("the added product total :"+addedProductTotal +" - is different from the product total in the cart :"+cartTotal, addedProductTotal.equals(cartTotal));
         }
     }
 
