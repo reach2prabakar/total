@@ -1,8 +1,16 @@
 # TopTal_AutomationAssesement 
 
-
 > TO validate the http://automationpractice.multiformis.com UI and 
 > TO validate Map service (mapbox) with the given Acceptance Criteria.
+
+
+## Video Demo of the project
+Short video of running the UI ,API and load test is attached to the ProjectVideos branch 
+> Automation_RECPart1.mp4<br/>
+> Automation_RECPart2.mp4<br/>
+> loadTestPart1.mp4<br/>
+> loadTestPart2.mp4<br/>
+
 
 ## TOOLS
 [JAVA V_1.8 or greater](https://www.java.com/en/download/)<br/>
