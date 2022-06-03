@@ -54,8 +54,8 @@
                         </goals>
                         <configuration>
                             <projectName>ToptalAssesment</projectName>
-                            <outputDirectory>${project.build.directory}/cucumber-report-html</outputDirectory>
-                            <inputDirectory>${project.build.directory}/cucumber-reports</inputDirectory>
+                            <outputDirectory>${project.build.directory}</outputDirectory>
+                            <inputDirectory>${project.build.directory}</inputDirectory>
                             <jsonFiles>
                                 <param>**/*.json</param>
                             </jsonFiles>
